@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Simple-Food-Order-App/static/css/main.1979e426.chunk.css",
-    "main.js": "/Simple-Food-Order-App/static/js/main.58e12aba.chunk.js",
-    "main.js.map": "/Simple-Food-Order-App/static/js/main.58e12aba.chunk.js.map",
+    "main.js": "/Simple-Food-Order-App/static/js/main.7c60d739.chunk.js",
+    "main.js.map": "/Simple-Food-Order-App/static/js/main.7c60d739.chunk.js.map",
     "runtime-main.js": "/Simple-Food-Order-App/static/js/runtime-main.92a77950.js",
     "runtime-main.js.map": "/Simple-Food-Order-App/static/js/runtime-main.92a77950.js.map",
     "static/js/2.22599abc.chunk.js": "/Simple-Food-Order-App/static/js/2.22599abc.chunk.js",
@@ -10,12 +10,12 @@
     "index.html": "/Simple-Food-Order-App/index.html",
     "static/css/main.1979e426.chunk.css.map": "/Simple-Food-Order-App/static/css/main.1979e426.chunk.css.map",
     "static/js/2.22599abc.chunk.js.LICENSE.txt": "/Simple-Food-Order-App/static/js/2.22599abc.chunk.js.LICENSE.txt",
-    "static/media/meals.984543bf.jpg": "/Simple-Food-Order-App/static/media/meals.984543bf.jpg"
+    "static/media/meals.26d01f19.jpg": "/Simple-Food-Order-App/static/media/meals.26d01f19.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.92a77950.js",
     "static/js/2.22599abc.chunk.js",
     "static/css/main.1979e426.chunk.css",
-    "static/js/main.58e12aba.chunk.js"
+    "static/js/main.7c60d739.chunk.js"
   ]
 }

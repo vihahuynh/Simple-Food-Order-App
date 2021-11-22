@@ -1,13 +1,10 @@
 .form {
   margin: 1rem 0;
-  height: 9rem;
-  /* overflow: scroll; */
-}
-
-.controls {
+  height: 10rem;
+  /* overflow-y: scroll; */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: min-content min-content;
+  grid-template-rows: repeat(3, min-content);
   grid-column-gap: 2rem;
   margin-bottom: 1rem;
 }
@@ -30,10 +27,17 @@
   width: 100%;
 }
 
+.control input:focus {
+  outline: none;
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+
+  grid-column: 1 / -1;
+  grid-row: 3 / 4;
 }
 
 .actions button {
@@ -70,4 +74,11 @@
 .invalid input {
   border-color: #aa0b20;
   background-color: #ffeff1;
+}
+
+.error-text {
+  padding: 0;
+  margin: 2px;
+  font-size: 0.6rem;
+  color: #ca3e51;
 }

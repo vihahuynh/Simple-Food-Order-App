@@ -1,30 +1,68 @@
 import styles from "./Checkout.module.css";
+import useInput from "../../hooks/useInput";
+
+const isNotEmpty = (value) => value.trim() !== "";
+const isPostalCode = (value) => /^([0-9]{5})$/.test(value);
 
 const Checkout = (props) => {
+  const { input: nameInput, isInputValue: isNameInputValid } = useInput(
+    {
+      id: "name",
+      label: "Your name",
+      type: "text",
+    },
+    "Name must be not empty",
+    isNotEmpty
+  );
+
+  const { input: streetInput, isInputValue: isStreetInputValid } = useInput(
+    {
+      id: "street",
+      label: "Street",
+      type: "text",
+    },
+    "Street must be not empty",
+    isNotEmpty
+  );
+
+  const { input: cityInput, isInputValue: isCityInputValid } = useInput(
+    {
+      id: "city",
+      label: "City",
+      type: "text",
+    },
+    "City must be not empty",
+    isNotEmpty
+  );
+
+  const { input: postalCodeInput, isInputValue: isPostalCodeInputValid } =
+    useInput(
+      {
+        id: "code",
+        label: "Postal code",
+        type: "text",
+      },
+      "Postal code is invalid",
+      isPostalCode
+    );
+
   const confirmHandler = (event) => {
     event.preventDefault();
+    if (!formIsValid) return;
   };
+
+  let formIsValid =
+    isNameInputValid &&
+    isStreetInputValid &&
+    isCityInputValid &&
+    isPostalCodeInputValid;
 
   return (
     <form className={styles.form} onSubmit={confirmHandler}>
-      <div className={styles.controls}>
-        <div className={styles.control}>
-          <label htmlFor="name">Your Name</label>
-          <input type="text" id="name" />
-        </div>
-        <div className={styles.control}>
-          <label htmlFor="street">Street</label>
-          <input type="text" id="street" />
-        </div>
-        <div className={styles.control}>
-          <label htmlFor="postal">Postal Code</label>
-          <input type="text" id="postal" />
-        </div>
-        <div className={styles.control}>
-          <label htmlFor="city">City</label>
-          <input type="text" id="city" />
-        </div>
-      </div>
+      {nameInput}
+      {streetInput}
+      {postalCodeInput}
+      {cityInput}
       <div className={styles.actions}>
         <button type="button" onClick={props.onCancel}>
           Cancel

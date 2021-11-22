@@ -12,7 +12,7 @@ const AvailableMeals = () => {
     const fetchMeals = async () => {
       setIsLoading(true);
       const response = await fetch(
-        "https://react-http-ced21-default-rtdb.asia-southeast1.firebasedatabase.app/meals"
+        "https://react-http-ced21-default-rtdb.asia-southeast1.firebasedatabase.app/meals.json"
       );
 
       if (!response.ok) throw new Error("Something went wrong!");

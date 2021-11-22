@@ -93,7 +93,7 @@ const Checkout = (props) => {
         <button type="button" onClick={props.onCancel}>
           Cancel
         </button>
-        <button type="submit" className={styles.submit}>
+        <button disabled={!formIsValid} type="submit" className={styles.submit}>
           Confirm
         </button>
       </div>

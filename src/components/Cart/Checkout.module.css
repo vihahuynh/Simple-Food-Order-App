@@ -51,6 +51,15 @@
   font-size: 0.8rem;
 }
 
+.actions button:disabled,
+.actions button:disabled:hover,
+.actions button:disabled:active {
+  background-color: #ccc;
+  color: #292929;
+  border-color: #292929;
+  cursor: not-allowed;
+}
+
 .actions button:hover,
 .actions button:active {
   background-color: #ffe6dc;

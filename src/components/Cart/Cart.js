@@ -10,6 +10,8 @@ import Checkout from "./Checkout";
 const Cart = (props) => {
   const cartCxt = useContext(CartContext);
   const [isCheckout, setIsCheckout] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onAddItemHandler = (item) => {
     cartCxt.addItem({ ...item, amount: 1 });
@@ -25,6 +27,7 @@ const Cart = (props) => {
   const isEmptyCard = cartCxt.items.length <= 0;
 
   const onSubmitOrderHandler = (userData) => {
+    setIsSubmitting(true);
     fetch(
       "https://react-http-ced21-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json",
       {
@@ -35,7 +38,30 @@ const Cart = (props) => {
         }),
       }
     );
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+    cartCxt.clearAll();
   };
+
+  if (isSubmitting)
+    return (
+      <Modal onClick={props.onHideCart}>
+        <p>Sending order data...</p>
+      </Modal>
+    );
+
+  if (isSubmitted) {
+    return (
+      <Modal onClick={props.onHideCart}>
+        <p>Successfully sent order data!</p>
+        <div className={styles.actions}>
+          <button className={styles.button} onClick={props.onHideCart}>
+            Close
+          </button>
+        </div>
+      </Modal>
+    );
+  }
 
   return (
     <Modal onClick={props.onHideCart}>

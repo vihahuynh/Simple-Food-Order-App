@@ -38,7 +38,7 @@ const useInput = (inputInfo, errorMessage, checkValidCondition) => {
       {isInvalid && <p className={styles["error-text"]}>{errorMessage}</p>}
     </div>
   );
-  return { input, isInputValid, reset };
+  return { input, enteredInput, isInputValid, reset };
 };
 
 export default useInput;

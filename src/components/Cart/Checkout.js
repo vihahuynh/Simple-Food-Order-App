@@ -5,17 +5,26 @@ const isNotEmpty = (value) => value.trim() !== "";
 const isPostalCode = (value) => /^([0-9]{5})$/.test(value);
 
 const Checkout = (props) => {
-  const { input: nameInput, isInputValue: isNameInputValid } = useInput(
+  const {
+    input: nameInput,
+    enteredInput: enteredName,
+    isInputValid: isNameInputValid,
+  } = useInput(
     {
       id: "name",
       label: "Your name",
       type: "text",
     },
+
     "Name must be not empty",
     isNotEmpty
   );
 
-  const { input: streetInput, isInputValue: isStreetInputValid } = useInput(
+  const {
+    input: streetInput,
+    enteredInput: enteredStreet,
+    isInputValid: isStreetInputValid,
+  } = useInput(
     {
       id: "street",
       label: "Street",
@@ -25,7 +34,11 @@ const Checkout = (props) => {
     isNotEmpty
   );
 
-  const { input: cityInput, isInputValue: isCityInputValid } = useInput(
+  const {
+    input: cityInput,
+    enteredInput: enteredCity,
+    isInputValid: isCityInputValid,
+  } = useInput(
     {
       id: "city",
       label: "City",
@@ -35,27 +48,40 @@ const Checkout = (props) => {
     isNotEmpty
   );
 
-  const { input: postalCodeInput, isInputValue: isPostalCodeInputValid } =
-    useInput(
-      {
-        id: "code",
-        label: "Postal code",
-        type: "text",
-      },
-      "Postal code is invalid",
-      isPostalCode
-    );
+  const {
+    input: postalCodeInput,
+    enteredInput: enteredPostalCode,
+    isInputValid: isPostalCodeInputValid,
+  } = useInput(
+    {
+      id: "code",
+      label: "Postal code",
+      type: "text",
+    },
+    "Postal code is invalid",
+    isPostalCode
+  );
 
-  const confirmHandler = (event) => {
-    event.preventDefault();
-    if (!formIsValid) return;
-  };
+  let formIsValid = false;
 
-  let formIsValid =
+  formIsValid =
     isNameInputValid &&
     isStreetInputValid &&
     isCityInputValid &&
     isPostalCodeInputValid;
+
+  const confirmHandler = (event) => {
+    event.preventDefault();
+    console.log(formIsValid);
+    if (!formIsValid) return;
+
+    props.onSubmit({
+      name: enteredName,
+      street: enteredStreet,
+      postalCode: enteredPostalCode,
+      city: enteredCity,
+    });
+  };
 
   return (
     <form className={styles.form} onSubmit={confirmHandler}>
@@ -67,7 +93,9 @@ const Checkout = (props) => {
         <button type="button" onClick={props.onCancel}>
           Cancel
         </button>
-        <button className={styles.submit}>Confirm</button>
+        <button type="submit" className={styles.submit}>
+          Confirm
+        </button>
       </div>
     </form>
   );

@@ -24,6 +24,19 @@ const Cart = (props) => {
 
   const isEmptyCard = cartCxt.items.length <= 0;
 
+  const onSubmitOrderHandler = (userData) => {
+    fetch(
+      "https://react-http-ced21-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          user: userData,
+          orderedItems: cartCxt.items,
+        }),
+      }
+    );
+  };
+
   return (
     <Modal onClick={props.onHideCart}>
       <ul className={styles["cart-items"]}>
@@ -45,7 +58,9 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{`$${cartCxt.totalAmount.toFixed(2)}`}</span>
       </div>
-      {isCheckout && <Checkout onCancel={props.onHideCart} />}
+      {isCheckout && (
+        <Checkout onSubmit={onSubmitOrderHandler} onCancel={props.onHideCart} />
+      )}
       {!isCheckout && (
         <div className={styles.actions}>
           <button className={styles["button--alt"]} onClick={props.onHideCart}>
